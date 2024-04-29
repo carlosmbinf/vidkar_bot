@@ -116,7 +116,6 @@ bot.start(async (ctx) => {
 
             } else {
                 await ctx.reply(`Vamos a comenzar a vincular su usuario de Telegram con su cuenta de VidKar`)
-                await ctx.reply(`Verifique las mayusculas y minusculas Por favor!!! ${cuidadoEmoji}\nPresione /opciones para comenzar`);
                 let usuarios = await buscarUsuarioPoridtelegram(ctx.chat.id)
                 let botones;
 
@@ -125,7 +124,7 @@ bot.start(async (ctx) => {
                 ];
 
                 // Send the message with the inline keyboard
-                ctx.reply('Selecciona una opción:', {
+                ctx.reply('Presione 👇 para comenzar:', {
                     reply_markup: {
                         inline_keyboard: [botones],
                         one_time_keyboard: true,
