@@ -91,10 +91,6 @@ const cuidadoEmoji = '⚠️'; // Código Unicode del emoji de "cuidado"
 console.log(`Cargando Bot Telegram vidkar_bot +${telegramKey}`)
 bot.start(async (ctx) => {
     try {
-        console.log(`message{`)
-    console.log(ctx.message)
-    console.log(`}`)
-    console.log(`--------------------------------------`)
     // Explicit usage
     await ctx.reply(`Welcome! ${ctx.message.from.first_name} ${ctx.message.from.last_name}`)
     
@@ -172,14 +168,12 @@ bot.on('text', async (ctx) => {
    try {
     
     const estado = await getEstado(ctx.chat.id);
-       console.log(estado)
-       console.log(ctx.chat.id);
        // Verificar el estado de la conversación
        if (estado === property.registrarse) {
            // Obtener la respuesta del usuario
            const nombreUsuario = ctx.message.text;
            // Procesar el nombre de usuario y realizar la acción deseada
-           console.log(`Usuario: (${nombreUsuario})`);
+           console.log(`Registro de Usuario: (${nombreUsuario}) con id: (${ctx.chat.id})`);
    
            let usuarios = await buscarUsuarioPorNombre(nombreUsuario)
            
@@ -329,7 +323,6 @@ bot.on('callback_query', async (ctx) => {
     try {
           // Explicit usage
     let estado = ctx.callbackQuery.data
-    console.log(estado)
     cambiarEstado(ctx.chat.id,estado)
 
     switch (estado) {
@@ -341,19 +334,11 @@ bot.on('callback_query', async (ctx) => {
             const nombreUsuarioVpn = await buscarUsuarioPoridtelegram(ctx.chat.id); // Obtener el segundo valor (nombre de usuario)
 
             // Procesar el nombre de usuario y realizar la acción deseada
-            console.log(`Usuarios: (${nombreUsuarioVpn.map((user) => user.username + " ")})`);
-            console.log(`ctx.chat.id: (${ctx.chat.id})`);
             var usuarioVPN = await buscarUsuarioPorNombre(nombreUsuarioVpn[0].username) //{ username: nombreUsuarioVpn }, { fields: { username: 1, _id: 1, vpnMbGastados: 1, idtelegram: 1 } })
             let existeUsuarioVPN = usuarioVPN != null && usuarioVPN.length > 0
             let tieneIdTelegramVpn = existeUsuarioVPN && usuarioVPN[0].idtelegram != null && usuarioVPN[0].idtelegram != ""
             let idTelegramEsCorrectoVpn = tieneIdTelegramVpn && usuarioVPN[0].idtelegram == ctx.chat.id
             let tieneConsumoDeDatosVpn = idTelegramEsCorrectoVpn && usuarioVPN[0].vpnMbGastados != null && usuarioVPN[0].vpnMbGastados != 0
-
-            console.log(`usuario: ${usuarioVPN}`);
-        console.log(`existeUsuarioVPN: ${existeUsuarioVPN}`);
-        console.log(`tieneIdTelegramVpn: ${tieneIdTelegramVpn}`);
-        console.log(`idTelegramEsCorrectoVpn: ${idTelegramEsCorrectoVpn}`);
-        console.log(`tieneConsumoDeDatosVpn: ${tieneConsumoDeDatosVpn}`);
 
             if (tieneConsumoDeDatosVpn) {
                 ctx.reply(`Consumo VPN:\n${((usuarioVPN[0].vpnMbGastados ? usuarioVPN[0].vpnMbGastados : 0) / 1024000).toFixed(2)}Mb\n${((usuarioVPN[0].vpnMbGastados ? usuarioVPN[0].vpnMbGastados : 0) / 1024000000).toFixed(2)}Gb`)
@@ -376,8 +361,6 @@ bot.on('callback_query', async (ctx) => {
         const nombreUsuarioProxy = await buscarUsuarioPoridtelegram(ctx.chat.id); // Obtener el segundo valor (nombre de usuario)
 
         // Procesar el nombre de usuario y realizar la acción deseada
-        console.log(`Usuarios: (${nombreUsuarioProxy.map((user) => user.username + " ")})`);
-        console.log(`ctx.chat.id: (${ctx.chat.id})`);
         let usuarioProxy = await buscarUsuarioPorNombre(nombreUsuarioProxy[0].username) //{ username: nombreUsuarioProxy }, { fields: { username: 1, _id: 1, vpnMbGastados: 1, idtelegram: 1 } })
         let existeProxy = usuarioProxy != null && usuarioProxy.length > 0
         let tieneIdTelegramProxy = existeProxy && usuarioProxy[0].idtelegram != null && usuarioProxy[0].idtelegram != ""
