@@ -88,7 +88,8 @@ const registrarLog = async (campo, idUsuarioAfectado, admin, mensaje) => {
 //iconos
 const cuidadoEmoji = '⚠️'; // Código Unicode del emoji de "cuidado"
 
-
+console.log('ENV ');
+console.log(process.env);
 console.log(`Cargando Bot Telegram vidkar_bot +${telegramKey}`)
 bot.start(async (ctx) => {
     try {
