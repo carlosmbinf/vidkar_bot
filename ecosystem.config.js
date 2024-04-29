@@ -1,6 +1,6 @@
 module.exports = {
   apps : [{
-    name: "configVPNFromVidkar",
+    name: "VIDKAR BOT TELEGRAM",
     script: "node index",
     env: {
       NODE_ENV: "development",
