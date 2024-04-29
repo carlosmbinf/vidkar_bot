@@ -14,7 +14,7 @@ const property = {
     consumoVpn: 'consumo_vpn',
     consumoProxy: 'consumo_proxy',
 }
-const telegramKey = process.env.BOT_KEY;
+const telegramKey = "6896013579:AAHBUolmlfY6bWVBqn_oh9ToSEwQEpNtFAk";
 const opts = {
     endpoint: "ws://vidkar.ddns.net:6000/websocket",
     SocketConstructor: ws,
@@ -88,8 +88,6 @@ const registrarLog = async (campo, idUsuarioAfectado, admin, mensaje) => {
 //iconos
 const cuidadoEmoji = '⚠️'; // Código Unicode del emoji de "cuidado"
 
-console.log('ENV ');
-console.log(process.env.env.BOT_KEY);
 console.log(`Cargando Bot Telegram vidkar_bot +${telegramKey}`)
 bot.start(async (ctx) => {
     try {
